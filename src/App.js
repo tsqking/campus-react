@@ -1,7 +1,16 @@
 import React from 'react';
+import FetchData from './common/utils/fetch-data';
 
-const App = () => {
-  return <div className='App'></div>;
-};
+export default class App extends React.Component {
 
-export default App;
+  async componentDidMount(){
+    let fd = new FetchData();
+    let url = 'listUsers'
+    let user = await fd.get(url);
+    console.log(user);
+  }
+
+  render() {
+    return <div className='app'></div>;
+  }
+}
