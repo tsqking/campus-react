@@ -3,25 +3,14 @@ import FetchData from './common/utils/fetch-data';
 
 export default class App extends React.Component {
   async componentDidMount() {
-    let fd = new FetchData();
-    let url = 'listUsers';
-    let user = await fd.get(url);
-    console.log(user);
+    const fd = new FetchData();
+    const url = 'listUsers';
+    const r = await fd.get(url);
+    const users = r && r.data;
+    console.log(JSON.stringify(users));
   }
 
   render() {
-    return (
-      <div className='app'>
-        <iframe
-          title='shen'
-          src='//player.bilibili.com/player.html?aid=39807401&cid=70962397&page=1'
-          scrolling='no'
-          border='0'
-          frameborder='no'
-          framespacing='0'
-          allowfullscreen='true'
-        ></iframe>
-      </div>
-    );
+    return <div className='app'></div>;
   }
 }
