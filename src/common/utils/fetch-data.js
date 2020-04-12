@@ -1,7 +1,7 @@
 import axios from 'axios';
 const FETCH_DATA_STATUS = {
   FETCH_STATUS_CANCEL: 'FETCH_STATUS_CANCEL',
-  FETCH_STATUS_ERROR: 'FETCH_STATUS_ERROR'
+  FETCH_STATUS_ERROR: 'FETCH_STATUS_ERROR',
 };
 
 export default class FetchData {
@@ -9,12 +9,12 @@ export default class FetchData {
     this.source = axios.CancelToken.source();
   }
 
-  get(url, param) {
+  async get(url, param) {
     this.source && this.source.cancel();
     this.source = axios.CancelToken.source();
     param = param || {};
     let queryString = Object.keys(param)
-      .map(key => {
+      .map((key) => {
         return key + '=' + param[key];
       })
       .join('&');
@@ -22,9 +22,9 @@ export default class FetchData {
 
     return axios
       .get(url, {
-        cancelToken: this.source.token
+        cancelToken: this.source.token,
       })
-      .catch(error => {
+      .catch((error) => {
         if (axios.isCancel(error)) {
           console.log(FETCH_DATA_STATUS.FETCH_STATUS_CANCEL, url);
         }
@@ -38,15 +38,15 @@ export default class FetchData {
       });
   }
 
-  post(url, param) {
+  async post(url, param) {
     this.source && this.source.cancel();
     this.source = axios.CancelToken.source();
 
     return axios
       .post(url, param, {
-        cancelToken: this.source.token
+        cancelToken: this.source.token,
       })
-      .catch(error => {
+      .catch((error) => {
         if (axios.isCancel(error)) {
           console.log(FETCH_DATA_STATUS.FETCH_STATUS_CANCEL, url);
         }
