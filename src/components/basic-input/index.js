@@ -27,21 +27,22 @@ export default class BasicInput extends React.Component {
   }
 
   render() {
+    const { prefix, suffix, inputClass, name, value } = this.props;
     return (
       <div className='basic-input'>
-        <span className='pre'>{this.props.prefix}</span>
+        {prefix && <span className='pre'>{prefix}</span>}
         <input
           ref={this.inputRef}
-          className={this.props.extraInputClass}
-          name={this.props.name}
-          value={this.props.value}
+          className={inputClass}
+          name={name}
+          value={value}
           onChange={this.onChange.bind(this)}
           onFocus={this.onFocus.bind(this)}
           onBlur={this.onBlur.bind(this)}
           onKeyDown={this.onKeyDown.bind(this)}
-          autoComplete='false'
+          autoComplete='off'
         />
-        <span className='suf'>{this.props.suffix}</span>
+        {suffix && <span className='suf'>{suffix}</span>}
       </div>
     );
   }

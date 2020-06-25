@@ -1,11 +1,5 @@
 import React from 'react';
 import BasicInput from '../basic-input';
-const DROP_DOWN_POSITION = {
-  TOP_LEFT: 'top-left',
-  TOP_RIGHT: 'top-right',
-  BOTTOM_LEFT: 'bottom-left',
-  BOTTOM_RIGHT: 'bottom-right'
-};
 
 const DropDown = ({ target }) => {
   let { open, options, getPlate, activeIndex } = target.props;
